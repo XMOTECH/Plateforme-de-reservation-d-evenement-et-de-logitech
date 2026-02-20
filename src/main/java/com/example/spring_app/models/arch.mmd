@@ -1,0 +1,53 @@
+classDiagram
+    direction TB
+    
+    class User {
+        +Long id
+        +String name
+        +String email
+        +String password
+    }
+    
+    class Event {
+        +Long id
+        +String title
+        +LocalDateTime eventDateTime
+        +Integer capacity
+        +Integer ticketsSold
+        +Long version
+        +...()
+    }
+    
+    class TicketCategory {
+        +Long id
+        +String name
+        +Double price
+        +Integer quantityAvailable
+    }
+    
+    class Order {
+        +Long id
+        +LocalDateTime orderDate
+        +Double totalAmount
+        +String stripeSessionId
+        +OrderStatus status
+    }
+    
+    class Ticket {
+        +Long id
+        +String uniqueCode
+        +Boolean isScanned
+    }
+    
+    class OrderStatus {
+        <<enumeration>>
+        PENDING
+        PAID
+        CANCELLED
+    }
+
+    User "1" -- "*" Event : organise >
+    User "1" -- "*" Order : passe >
+    Event "1" -- "*" TicketCategory : possède >
+    Order "1" -- "*" Ticket : contient >
+    TicketCategory "1" -- "*" Ticket : définit le type de >
