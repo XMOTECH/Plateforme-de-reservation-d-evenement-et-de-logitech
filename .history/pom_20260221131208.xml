@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.2</version> 
+		<version>3.4.2</version> <!-- Version stable recommandée pour Java 21 -->
 		<relativePath/>
 	</parent>
 
@@ -92,21 +92,8 @@
 
 		<dependency>
 			<groupId>com.stripe</groupId>
-			<artifactId>stripe-java</artifactId>
+			<artifactId>stripe.java</artifactId>
 			<version>24.22.0</version>
-		</dependency>
-
-		<!-- Google ZXing pour la génération de QR Code -->
-		<dependency>
-			<groupId>com.google.zxing</groupId>
-			<artifactId>core</artifactId>
-			<version>3.5.3</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.zxing</groupId>
-			<artifactId>javase</artifactId>
-			<version>3.5.3</version>
 		</dependency>
 
 	</dependencies>

@@ -22,7 +22,8 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "orders")
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 public class Order {
     @Id
@@ -34,7 +35,7 @@ public class Order {
     private LocalDateTime orderDate;
 
     @Column(precision = 10, scale = 2)
-    private BigDecimal totalAmount; 
+    private BigDecimal totalAmount;
 
     @Column(unique = true)
     private String stripeSessionId;

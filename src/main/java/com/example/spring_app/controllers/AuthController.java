@@ -6,14 +6,14 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-import com.example.spring_app.models.User;
+import com.example.spring_app.dto.AuthResponse;
+import com.example.spring_app.dto.LoginRequest;
 import com.example.spring_app.security.JwtService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -23,12 +23,13 @@ public class AuthController {
     private final JwtService jwtService;
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody User request) {
+    public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request) {
        
         authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
         );
-        return ResponseEntity.ok(jwtService.generateToken(request.getEmail()));
+        String token = jwtService.generateToken(request.getEmail());
+        return ResponseEntity.ok(new AuthResponse(token));
     }
     
 }
